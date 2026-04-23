@@ -407,12 +407,13 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 // ─── Pricing Card ─────────────────────────────────────────────────────────
 
-function PricingCard({ title, price, features, cta, highlighted }: {
+function PricingCard({ title, price, features, cta, highlighted, paymentLink }: {
   title: string;
   price: string;
   features: string[];
   cta: string;
   highlighted?: boolean;
+  paymentLink?: string;
 }) {
   return (
     <div className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
@@ -441,7 +442,9 @@ function PricingCard({ title, price, features, cta, highlighted }: {
         ))}
       </ul>
       <a
-        href={highlighted ? "#pro" : "#"}
+        href={paymentLink || "#"}
+        target={paymentLink ? "_blank" : undefined}
+        rel={paymentLink ? "noopener noreferrer" : undefined}
         className={`block w-full py-3 px-5 rounded-xl font-semibold text-center text-sm transition-all ${
           highlighted
             ? "bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90"
@@ -491,7 +494,7 @@ export default function Home() {
             <a href="#tool" className="hidden sm:inline-flex px-4 py-2 rounded-lg text-sm font-medium text-[var(--secondary-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--secondary)] transition-all">
               Try It Free
             </a>
-            <a href="#pricing" className="px-4 py-2 rounded-lg text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition-opacity">
+            <a href="https://buy.stripe.com/test_dRmeVd5Nj4k75QUcSD0Jq00" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition-opacity">
               Get Pro
             </a>
           </div>
@@ -671,6 +674,7 @@ export default function Home() {
                 "All future Pro features",
               ]}
               cta="Get Pro — $12"
+              paymentLink="https://buy.stripe.com/test_dRmeVd5Nj4k75QUcSD0Jq00"
             />
           </div>
           <div className="flex items-center justify-center gap-1.5 mt-6 text-sm text-[var(--muted-foreground)]">
@@ -772,7 +776,9 @@ export default function Home() {
               Generate Free Icons
             </a>
             <a
-              href="#pricing"
+              href="https://buy.stripe.com/test_dRmeVd5Nj4k75QUcSD0Jq00"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-xl font-semibold text-base bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--muted)] transition-all"
             >
               Get Pro — $12
